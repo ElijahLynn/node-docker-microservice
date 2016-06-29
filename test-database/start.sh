@@ -11,9 +11,10 @@ docker run --name db --detach \
     --publish 3307:3306 \
     mysql:latest
 
+sleep 10
 # Wait for the database service to start up.
 echo "Waiting for the DB to start up..."
-docker exec db mysqladmin --silent --wait=30 --user=users_service --password=123 ping || exit 1
+docker exec db mysqladmin --wait=30 --user=users_service --password=123 ping || exit 1
 
 # Run the setup script.
 echo "Setting up initial data..."
